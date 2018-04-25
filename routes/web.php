@@ -3,9 +3,7 @@
 Route::get('/', 'ThemeTestController@index');
 Route::get('themes/{name}', 'ThemeTestController@theme');
 
-Route::get('themes/{section}/{part}', function ($section, $part) {
-    return view('theme::' . $section . '.' . $part);
-});
+Route::get('themes/{name}/{section}/{part}', 'ThemeTestController@part');
 
 // Route::get('assets/{one}/{two}/{three?}/{four?}', function ($one, $two, $three = null, $four = null) {
 
