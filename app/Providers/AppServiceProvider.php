@@ -13,9 +13,10 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        $themeName = collect(explode('/', request()->headers->get('referer')))->pop();
         $this->app['view']->addNamespace(
             'theme',
-            base_path() . '/storage/app/themes/' . config('theme.id')
+            base_path() . '/storage/app/themes/' . $themeName
         );
     }
 
