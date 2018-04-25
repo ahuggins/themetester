@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'id' => 'test'
+    'id' => 'theme'
 ];
