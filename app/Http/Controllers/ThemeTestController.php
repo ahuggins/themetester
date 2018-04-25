@@ -19,9 +19,9 @@ class ThemeTestController extends Controller
         return view('theme.list', ['files' => $files]);
     }
 
-    public function theme()
+    public function theme($name)
     {
-        $files = collect(\Storage::directories('themes/' . config('theme.id')))->filter(function ($dir) {
+        $files = collect(\Storage::directories('themes/' . $name))->filter(function ($dir) {
             return ! preg_match('/assets/', $dir);
         })->filter(function ($file) {
             return ! preg_match('/layouts/', $file);
@@ -31,6 +31,14 @@ class ThemeTestController extends Controller
             return new \SplFileObject(storage_path('app/'.$file));
         });
             
-        return view('theme.pages.list', ['files' => $files]);
+        return view('theme.pages.list', [
+            'files' => $files,
+            'name' => $name
+        ]);
+    }
+
+    public function part($name, $section, $part)
+    {
+        return view('theme::' . $section . '.' . $part);
     }
 }
